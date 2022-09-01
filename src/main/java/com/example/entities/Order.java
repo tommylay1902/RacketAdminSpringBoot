@@ -1,13 +1,19 @@
 package com.example.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.sql.Date;
 
+@Table(name="order")
+@Entity
 public class Order {
 
+    @Id
     int id;
 
     String racketBrand;
-    String stringPatern;
+    String stringPattern;
     String recTension;
     String stringType;
     String desiredTension;
@@ -28,7 +34,7 @@ public class Order {
                  int adminID) {
         this.id = id;
         this.racketBrand = racketBrand;
-        this.stringPatern = stringPatern;
+        this.stringPattern = stringPatern;
         this.recTension = recTension;
         this.stringType = stringType;
         this.desiredTension = desiredTension;
@@ -112,12 +118,12 @@ public class Order {
     }
 
 
-    public String getStringPatern() {
-        return stringPatern;
+    public String getStringPattern() {
+        return stringPattern;
     }
 
-    public void setStringPatern(String stringPatern) {
-        this.stringPatern = stringPatern;
+    public void setStringPattern(String stringPatern) {
+        this.stringPattern = stringPatern;
     }
 
     @Override
@@ -125,7 +131,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", racketBrand='" + racketBrand + '\'' +
-                ", stringPatern='" + stringPatern + '\'' +
+                ", stringPatern='" + stringPattern + '\'' +
                 ", recTension='" + recTension + '\'' +
                 ", stringType='" + stringType + '\'' +
                 ", desiredTension='" + desiredTension + '\'' +
