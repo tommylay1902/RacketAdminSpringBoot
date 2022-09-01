@@ -3,6 +3,7 @@ package com.example.entities;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Collection;
 
 @Table(name="Racket_Admin")
 @Entity
@@ -14,6 +15,7 @@ public class RacketAdmin {
     private String roles;
 
     public RacketAdmin() {
+        super();
     }
 
     public RacketAdmin(int id, String username, String password, String roles) {
@@ -34,7 +36,6 @@ public class RacketAdmin {
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
     }

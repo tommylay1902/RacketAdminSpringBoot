@@ -7,6 +7,7 @@ public class Order {
     int id;
 
     String racketBrand;
+    String stringPatern;
     String recTension;
     String stringType;
     String desiredTension;
@@ -15,14 +16,19 @@ public class Order {
 
     Date Duedate;
 
-    RacketAdmin adminID;
+    int adminID;
 
-    public Order(int id, String racketBrand, String recTension,
-                 String stringType, String desiredTension, String customerName,
-                 String customerPhoneNum, Date duedate, RacketAdmin adminID) {
 
+
+    public Order() {
+    }
+
+    public Order(int id, String racketBrand, String stringPatern, String recTension, String stringType,
+                 String desiredTension, String customerName, String customerPhoneNum, Date duedate,
+                 int adminID) {
         this.id = id;
         this.racketBrand = racketBrand;
+        this.stringPatern = stringPatern;
         this.recTension = recTension;
         this.stringType = stringType;
         this.desiredTension = desiredTension;
@@ -97,12 +103,21 @@ public class Order {
         Duedate = duedate;
     }
 
-    public RacketAdmin getAdminID() {
+    public int getAdminID() {
         return adminID;
     }
 
-    public void setAdminID(RacketAdmin adminID) {
+    public void setAdminID(int adminID) {
         this.adminID = adminID;
+    }
+
+
+    public String getStringPatern() {
+        return stringPatern;
+    }
+
+    public void setStringPatern(String stringPatern) {
+        this.stringPatern = stringPatern;
     }
 
     @Override
@@ -110,6 +125,7 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", racketBrand='" + racketBrand + '\'' +
+                ", stringPatern='" + stringPatern + '\'' +
                 ", recTension='" + recTension + '\'' +
                 ", stringType='" + stringType + '\'' +
                 ", desiredTension='" + desiredTension + '\'' +
