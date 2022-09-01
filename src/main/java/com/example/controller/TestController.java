@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/test")
 public class TestController {
-    @GetMapping()
+    @GetMapping("/hello")
     public String getHello(){
         return "hello";
     }
@@ -17,5 +16,7 @@ public class TestController {
         return "another";
     }
 
+    @GetMapping("/dashboard")
+    public String Dashboard(){return "welcome to dashboard!";}
 
 }
