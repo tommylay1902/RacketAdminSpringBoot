@@ -21,9 +21,8 @@ public class Order {
     String customerName;
     String customerPhoneNum;
 
-    Date recivedDate;
-    Date returnDate;
-
+    Date receivedDay;
+    Date returnDay;
 
     int adminID;
 
@@ -32,21 +31,46 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, String racketBrand, String stringPatern, String recTension, String stringType,
-                 String desiredTension, String customerName, String customerPhoneNum, Date duedate,
-                 int adminID) {
+    public Order(int id, int price, String racketBrand, String stringPattern, String recTension, String stringType,
+                 String desiredTension, String customerName, String customerPhoneNum,
+                 Date receivedDay, Date returnDay, int adminID) {
         this.id = id;
+        this.price = price;
         this.racketBrand = racketBrand;
-        this.stringPattern = stringPatern;
+        this.stringPattern = stringPattern;
         this.recTension = recTension;
         this.stringType = stringType;
         this.desiredTension = desiredTension;
         this.customerName = customerName;
         this.customerPhoneNum = customerPhoneNum;
-        recivedDate = duedate;
+        this.receivedDay = receivedDay;
+        this.returnDay = returnDay;
         this.adminID = adminID;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Date getReceivedDay() {
+        return receivedDay;
+    }
+
+    public void setReceivedDay(Date receivedDay) {
+        this.receivedDay = receivedDay;
+    }
+
+    public Date getReturnDay() {
+        return returnDay;
+    }
+
+    public void setReturnDay(Date returnDay) {
+        this.returnDay = returnDay;
+    }
 
     public int getId() {
         return id;
@@ -103,15 +127,6 @@ public class Order {
     public void setCustomerPhoneNum(String customerPhoneNum) {
         this.customerPhoneNum = customerPhoneNum;
     }
-
-    public Date getRecivedDate() {
-        return recivedDate;
-    }
-
-    public void setRecivedDate(Date recivedDate) {
-        this.recivedDate = recivedDate;
-    }
-
     public int getAdminID() {
         return adminID;
     }
@@ -133,14 +148,16 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", price=" + price +
                 ", racketBrand='" + racketBrand + '\'' +
-                ", stringPatern='" + stringPattern + '\'' +
+                ", stringPattern='" + stringPattern + '\'' +
                 ", recTension='" + recTension + '\'' +
                 ", stringType='" + stringType + '\'' +
                 ", desiredTension='" + desiredTension + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", customerPhoneNum='" + customerPhoneNum + '\'' +
-                ", Duedate=" + recivedDate +
+                ", receivedDay=" + receivedDay +
+                ", returnDay=" + returnDay +
                 ", adminID=" + adminID +
                 '}';
     }

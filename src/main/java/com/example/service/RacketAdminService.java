@@ -4,6 +4,7 @@ import com.example.entities.Order;
 import com.example.entities.RacketAdmin;
 import org.springframework.http.ResponseEntity;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,5 +16,7 @@ public interface RacketAdminService {
     Optional<RacketAdmin> getRacketAdminById(int id);
     ResponseEntity<String> deleteAll();
     List<RacketAdmin> popRAadmin();
+
+    Optional<Order> orderByDay(Date date);
 
 }
