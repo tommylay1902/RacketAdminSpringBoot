@@ -18,6 +18,7 @@ public class SecurityConfiguration {
         http
                 .csrf(c -> c.disable())
                 .authorizeRequests((auth) -> {
+                    auth.antMatchers("/api/racketadmin/showRA").permitAll();
                     auth.antMatchers("/*").authenticated();
                     auth.antMatchers("/hello").permitAll();
                     auth.antMatchers("/dashboard").hasRole("USER");

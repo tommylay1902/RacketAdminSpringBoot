@@ -17,6 +17,6 @@ public interface RacketAdminService {
     ResponseEntity<String> deleteAll();
     List<RacketAdmin> popRAadmin();
 
-    Optional<Order> orderByDay(Date date);
+    int orderByDay(Date start, Date end);
 
 }

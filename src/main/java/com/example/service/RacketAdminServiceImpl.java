@@ -123,18 +123,17 @@ public class RacketAdminServiceImpl implements RacketAdminService {
     @Override
     public List<RacketAdmin> popRAadmin() {
         RacketAdmin ad = new RacketAdmin(01,"root","1234","ADMIN");
-        RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
+        //RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
 
         this.insert(ad);
-        this.insert(usr);
+        //this.insert(usr);
 
         return this.getAll();
     }
 
     @Override
-    public Optional<Order> orderByDay(Date date) {
-        return Optional.empty();
-
+    public int orderByDay(Date start, Date end) {
+        return repo.ordersByDay(start, end);
     }
 
 
