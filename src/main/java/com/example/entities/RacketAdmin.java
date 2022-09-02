@@ -7,12 +7,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Table(name="Racket_Admin")
 @Entity
@@ -24,6 +23,9 @@ public class RacketAdmin  {
     private String username;
     private String password;
     private String roles;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy="racketAdmin")
+    private Set<Order> orders;
 
     public RacketAdmin() {
     }
@@ -67,5 +69,13 @@ public class RacketAdmin  {
 
     public String getPassword() {
         return password;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }

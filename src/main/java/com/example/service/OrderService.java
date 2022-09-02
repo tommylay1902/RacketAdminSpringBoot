@@ -15,5 +15,5 @@ public interface OrderService {
     ResponseEntity<String> delete(int id);
     Optional<Order> getOrderById(int id);
     ResponseEntity<String> deleteAll();
-    List<Order> popOrder();
+    List<Order> getOrderByEmployee(int id);
 }

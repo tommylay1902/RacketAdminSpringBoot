@@ -2,7 +2,10 @@ package com.example.controller;
 
 import com.example.entities.Order;
 import com.example.entities.RacketAdmin;
+import com.example.security.RacketAdminPrincipal;
 import com.example.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +16,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/order")
 public class  OrderController {
+
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
     @Autowired
     OrderService service;
@@ -78,10 +83,11 @@ public class  OrderController {
         return service.deleteAll();
     }
 
-    @GetMapping("/showOrder")
-    @ResponseBody
-    public List<Order> popOrder()    {
 
-        return service.popOrder();
+    @GetMapping("/show/{id}")
+    @ResponseBody
+    public List<Order> getOrderByEmployee(@PathVariable int id){
+        logger.info("id" +  id);
+        return service.getOrderByEmployee(id);
     }
 }

@@ -27,6 +27,12 @@ public class RacketAdminController {
         return service.getAll();
     }
 
+    /**
+     * @author Chuang Huang
+     * Post mehthod for url baseUrl/api/order/add
+     * @param rd represents the ReqeustBody Object of RacketAdmin that will be passed in
+     * @return ResponseEntity that returns the response status
+     */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> insert(@RequestBody RacketAdmin rd)
@@ -80,19 +86,13 @@ public class RacketAdminController {
         return service.deleteAll();
     }
 
-    @GetMapping("/showRA")
-    @ResponseBody
-    public List<RacketAdmin> popRAadmin()    {
-
-        return service.popRAadmin();
-    }
-
     @GetMapping("/showByDay/{start}/{end}")
     @ResponseBody
     public int orderByDay(@PathVariable Date start, @PathVariable Date end)
     {
         return service.orderByDay(start, end);
     }
+
 
 }
 

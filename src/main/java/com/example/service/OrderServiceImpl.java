@@ -56,7 +56,7 @@ public class OrderServiceImpl implements OrderService{
             Optional<Order> order = repo.findById(id);
             order.get().setId(o.getId());
             order.get().setCustomerName(o.getCustomerName());
-            order.get().setAdminID(o.getAdminID());
+            order.get().setRacketAdmin(o.getRacketAdmin());
             order.get().setCustomerPhoneNum(o.getCustomerPhoneNum());
             order.get().setDesiredTension(o.getDesiredTension());
             order.get().setReturnDay(o.getReturnDay());
@@ -126,35 +126,10 @@ public class OrderServiceImpl implements OrderService{
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
     @Override
-    public List<Order> popOrder() {
-        RacketAdmin ad = new RacketAdmin(01,"root","1234","ADMIN");
-        RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
-
-        Date d = new Date(2022-8-22);
-        Date d2 = new Date(2022-8-29);
-        //y m d
-        Order a = new Order(11,20,"Maserati", "Squares",
-                "Low","Nylon","Medium",
-                "6216662121", "Tommy LAYY",d,d2,ad.getId());
-
-        Date d1 = new Date(2022-9-13);
-        //y m d
-        Order b = new Order(22,30,"Honda", "Rectangle",
-                "Medium","Nylon","High",
-                "1323211111", "Tam NUGGET",d1,d2,ad.getId());
-
-        Date d3 = new Date(2022-4-20);
-        //y m d
-        Order c = new Order(33,40,"Leux", "Squares",
-                "Low","Nylon","High",
-                "8971321222", "Chaung JUAN",d2,d3,ad.getId());
-
-        this.insert(a);
-        this.insert(b);
-        this.insert(c);
-
-        return this.getAll();
+    public List<Order> getOrderByEmployee(int id){
+        return repo.findByRacketAdminId(id);
     }
 }
 

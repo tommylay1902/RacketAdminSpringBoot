@@ -15,8 +15,9 @@ public interface RacketAdminService {
     ResponseEntity<String> delete(int id);
     Optional<RacketAdmin> getRacketAdminById(int id);
     ResponseEntity<String> deleteAll();
-    List<RacketAdmin> popRAadmin();
 
     int orderByDay(Date start, Date end);
+
+
 
 }
