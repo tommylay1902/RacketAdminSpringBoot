@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,12 +29,6 @@ public class RacketAdminController {
         return service.getAll();
     }
 
-    /**
-     * @author Chuang Huang
-     * Post mehthod for url baseUrl/api/order/add
-     * @param rd represents the ReqeustBody Object of RacketAdmin that will be passed in
-     * @return ResponseEntity that returns the response status
-     */
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<String> insert(@RequestBody RacketAdmin rd)
@@ -86,13 +82,26 @@ public class RacketAdminController {
         return service.deleteAll();
     }
 
-    @GetMapping("/showByDay/{start}/{end}")
+    @GetMapping("/showRA")
     @ResponseBody
-    public int orderByDay(@PathVariable Date start, @PathVariable Date end)
-    {
-        return service.orderByDay(start, end);
+    public List<RacketAdmin> popRAadmin()    {
+
+        return service.popRAadmin();
     }
 
+    @GetMapping("/showByDay/{start}")
+    @ResponseBody
+    public Optional<Order> orderByDay(@PathVariable Date start)
+    {
+        try{
+            if(start.toLocalDate().isSupported(ChronoField.DAY_OF_MONTH))
+                return service.orderByDay(start);
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return Optional.empty();
+    }
 
 }
 

@@ -4,21 +4,18 @@ package com.example.service;
 import com.example.entities.Order;
 import com.example.entities.RacketAdmin;
 import com.example.repos.RacketAdminRepository;
-import com.example.security.RacketAdminPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RacketAdminServiceImpl implements RacketAdminService, UserDetailsService {
+public class RacketAdminServiceImpl implements RacketAdminService {
     @Autowired
     RacketAdminRepository repo;
     @Override
@@ -91,6 +88,7 @@ public class RacketAdminServiceImpl implements RacketAdminService, UserDetailsSe
 
     @Override
     public Optional<RacketAdmin> getRacketAdminById(int id) {
+
         //Search the entry by id and return it
         //return optional.empty if not exist
         try{
@@ -124,16 +122,29 @@ public class RacketAdminServiceImpl implements RacketAdminService, UserDetailsSe
     }
 
     @Override
-    public int orderByDay(Date start, Date end) {
-        return repo.ordersByDay(start, end);
+    public List<RacketAdmin> popRAadmin() {
+        RacketAdmin ad = new RacketAdmin(01,"root","1234","ADMIN");
+        //RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
+
+        this.insert(ad);
+        //this.insert(usr);
+
+        return this.getAll();
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String username) {
-        final RacketAdmin appUser = repo.findByUsername(username);
-        if (appUser == null) {
-            throw new UsernameNotFoundException(username);
-        }
-        return new RacketAdminPrincipal(appUser);
+    public Optional<Order> orderByDay(Date start) {
+        return repo.ordersByDay(start);
     }
+
+    @Override
+    public Optional<Order> orderByWeek(Date start, Date end) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Order> orderByMonth(Month month) {
+        return Optional.empty();
+    }
+
 }
