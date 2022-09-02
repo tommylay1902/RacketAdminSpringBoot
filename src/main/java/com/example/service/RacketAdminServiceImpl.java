@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
@@ -132,9 +133,18 @@ public class RacketAdminServiceImpl implements RacketAdminService {
     }
 
     @Override
-    public int orderByDay(Date start, Date end) {
-        return repo.ordersByDay(start, end);
+    public Optional<Order> orderByDay(Date start) {
+        return repo.ordersByDay(start);
     }
 
+    @Override
+    public Optional<Order> orderByWeek(Date start, Date end) {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Order> orderByMonth(Month month) {
+        return Optional.empty();
+    }
 
 }

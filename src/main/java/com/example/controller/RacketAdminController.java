@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
 
@@ -87,11 +89,18 @@ public class RacketAdminController {
         return service.popRAadmin();
     }
 
-    @GetMapping("/showByDay/{start}/{end}")
+    @GetMapping("/showByDay/{start}")
     @ResponseBody
-    public int orderByDay(@PathVariable Date start, @PathVariable Date end)
+    public Optional<Order> orderByDay(@PathVariable Date start)
     {
-        return service.orderByDay(start, end);
+        try{
+            if(start.toLocalDate().isSupported(ChronoField.DAY_OF_MONTH))
+                return service.orderByDay(start);
+
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return Optional.empty();
     }
 
 }

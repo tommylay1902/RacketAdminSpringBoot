@@ -12,6 +12,7 @@ public class Order {
     @Id
     int id;
     int price;
+    String description;
 
     String racketBrand;
     String stringPattern;
