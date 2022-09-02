@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RacketAdminRepository extends JpaRepository<RacketAdmin, Integer> {
+    public RacketAdmin findByUsername(String username);
 
 }
