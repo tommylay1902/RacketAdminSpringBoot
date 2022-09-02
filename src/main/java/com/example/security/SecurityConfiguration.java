@@ -21,6 +21,7 @@ public class SecurityConfiguration {
                     auth.antMatchers("/*").authenticated();
                     auth.antMatchers("/hello").permitAll();
                     auth.antMatchers("/dashboard").hasRole("USER");
+                    auth.antMatchers("/api/order/*").hasAnyRole("USER", "ADMIN");
                     auth.antMatchers("/api/racketadmin/*").hasRole("ADMIN");
                 })
                 .formLogin()

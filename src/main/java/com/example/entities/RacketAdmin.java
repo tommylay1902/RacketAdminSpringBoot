@@ -16,7 +16,7 @@ import java.util.List;
 
 @Table(name="Racket_Admin")
 @Entity
-public class RacketAdmin implements UserDetails {
+public class RacketAdmin  {
 
     private static final Logger logger = LoggerFactory.getLogger(RacketAdminPrincipal.class);
     @Id
@@ -36,51 +36,6 @@ public class RacketAdmin implements UserDetails {
         this.roles = roles;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-
-        logger.info("in the Entity class " + this.roles);
-        if(this.roles.equals("USER")){
-            list.add(new SimpleGrantedAuthority("ROLE_USER"));
-        }
-        else if(this.roles.equals("ADMIN")){
-            list.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        }
-
-        return list;
-    }
-
-
-    @Override
-    public String getPassword() {
-        return this.password;
-    }
-
-    @Override
-    public String getUsername() {
-        return this.username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 
     public int getId() {
         return id;
@@ -104,5 +59,13 @@ public class RacketAdmin implements UserDetails {
 
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
