@@ -3,12 +3,12 @@ package com.example.service;
 import com.example.entities.Order;
 import com.example.entities.RacketAdmin;
 import com.example.repos.OrderRepository;
-import com.example.repos.RacketAdminRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService{
             order.get().setAdminID(o.getAdminID());
             order.get().setCustomerPhoneNum(o.getCustomerPhoneNum());
             order.get().setDesiredTension(o.getDesiredTension());
-            order.get().setDuedate(o.getDuedate());
+            order.get().setRecivedDate(o.getRecivedDate());
             order.get().setRacketBrand(o.getRacketBrand());
             order.get().setRecTension(o.getRecTension());
             order.get().setStringPattern(o.getStringPattern());
@@ -123,6 +123,36 @@ public class OrderServiceImpl implements OrderService{
             System.out.println(e);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @Override
+    public List<Order> popOrder() {
+        RacketAdmin ad = new RacketAdmin(01,"root","1234","ADMIN");
+        RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
+
+        Date d = new Date(2022-8-22);
+        //y m d
+        Order a = new Order(11,"Maserati", "Squares",
+                "Low","Nylon","Medium",
+                "6216662121", "Tommy LAYY",d,ad.getId());
+
+        Date d1 = new Date(2022-9-13);
+        //y m d
+        Order b = new Order(22,"Honda", "Rectangle",
+                "Medium","Nylon","High",
+                "1323211111", "Tam NUGGET",d1,ad.getId());
+
+        Date d2 = new Date(2022-4-20);
+        //y m d
+        Order c = new Order(33,"Leux", "Squares",
+                "Low","Nylon","High",
+                "8971321222", "Chaung JUAN",d2,ad.getId());
+
+        this.insert(a);
+        this.insert(b);
+        this.insert(c);
+
+        return this.getAll();
     }
 }
 

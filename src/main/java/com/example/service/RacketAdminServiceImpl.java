@@ -117,4 +117,17 @@ public class RacketAdminServiceImpl implements RacketAdminService {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+    @Override
+    public List<RacketAdmin> popRAadmin() {
+        RacketAdmin ad = new RacketAdmin(01,"root","1234","ADMIN");
+        RacketAdmin usr = new RacketAdmin(02,"root","1234","USER");
+
+        this.insert(ad);
+        this.insert(usr);
+
+        return this.getAll();
+    }
+
+
 }

@@ -11,6 +11,7 @@ public class Order {
 
     @Id
     int id;
+    int price;
 
     String racketBrand;
     String stringPattern;
@@ -20,7 +21,9 @@ public class Order {
     String customerName;
     String customerPhoneNum;
 
-    Date Duedate;
+    Date recivedDate;
+    Date returnDate;
+
 
     int adminID;
 
@@ -40,7 +43,7 @@ public class Order {
         this.desiredTension = desiredTension;
         this.customerName = customerName;
         this.customerPhoneNum = customerPhoneNum;
-        Duedate = duedate;
+        recivedDate = duedate;
         this.adminID = adminID;
     }
 
@@ -101,12 +104,12 @@ public class Order {
         this.customerPhoneNum = customerPhoneNum;
     }
 
-    public Date getDuedate() {
-        return Duedate;
+    public Date getRecivedDate() {
+        return recivedDate;
     }
 
-    public void setDuedate(Date duedate) {
-        Duedate = duedate;
+    public void setRecivedDate(Date recivedDate) {
+        this.recivedDate = recivedDate;
     }
 
     public int getAdminID() {
@@ -137,7 +140,7 @@ public class Order {
                 ", desiredTension='" + desiredTension + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", customerPhoneNum='" + customerPhoneNum + '\'' +
-                ", Duedate=" + Duedate +
+                ", Duedate=" + recivedDate +
                 ", adminID=" + adminID +
                 '}';
     }

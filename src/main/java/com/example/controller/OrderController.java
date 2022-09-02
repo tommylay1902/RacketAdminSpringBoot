@@ -77,4 +77,11 @@ public class  OrderController {
     {
         return service.deleteAll();
     }
+
+    @GetMapping("/showOrder")
+    @ResponseBody
+    public List<Order> popOrder()    {
+
+        return service.popOrder();
+    }
 }

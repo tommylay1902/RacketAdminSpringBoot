@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.entities.Order;
 import com.example.entities.RacketAdmin;
 import com.example.service.RacketAdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,6 +77,13 @@ public class RacketAdminController {
     public ResponseEntity<String> deleteAll()
     {
         return service.deleteAll();
+    }
+
+    @GetMapping("/showRA")
+    @ResponseBody
+    public List<RacketAdmin> popRAadmin()    {
+
+        return service.popRAadmin();
     }
 
 }
