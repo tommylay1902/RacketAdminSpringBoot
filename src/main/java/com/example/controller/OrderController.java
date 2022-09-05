@@ -1,8 +1,6 @@
 package com.example.controller;
 
 import com.example.entities.Order;
-import com.example.entities.RacketAdmin;
-import com.example.security.RacketAdminPrincipal;
 import com.example.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,16 +48,16 @@ public class  OrderController {
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<String> update(@RequestBody Order or, @PathVariable int id)
-    {
-        //Check if there is information pass in from the post request
-        //if yes, call update service to update the information
-        try{
-            if(or != null)
-                return service.update(or, id);
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        {
+            //Check if there is information pass in from the post request
+            //if yes, call update service to update the information
+            try{
+                if(or != null)
+                    return service.update(or, id);
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/getById/{id}")
@@ -87,7 +85,6 @@ public class  OrderController {
     @GetMapping("/show/{id}")
     @ResponseBody
     public List<Order> getOrderByEmployee(@PathVariable int id){
-        logger.info("id" +  id);
         return service.getOrderByEmployee(id);
     }
 

@@ -1,11 +1,9 @@
 package com.example.util;
 
 import com.example.entities.Order;
-import com.example.entities.RacketAdmin;
-import com.example.repos.OrderRepository;
-import com.example.repos.RacketAdminRepository;
+import com.example.entities.User;
 import com.example.service.OrderService;
-import com.example.service.RacketAdminService;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,15 +14,15 @@ import java.sql.Date;
 public class DummyContentUtil {
 
     @Autowired
-    private RacketAdminService raService;
+    private UserService raService;
 
     @Autowired
     private OrderService oService;
 
     @PostConstruct
     private void postConstruct() {
-        RacketAdmin ad = new RacketAdmin(01,"rootAdmin","1234","ADMIN");
-        RacketAdmin usr = new RacketAdmin(02,"rootUser","1234","USER");
+        User ad = new User(01,"rootManager","1234","MANAGER");
+        User usr = new User(02,"rootEmployee","1234","EMPLOYEE");
 
         raService.insert(ad);
         raService.insert(usr);

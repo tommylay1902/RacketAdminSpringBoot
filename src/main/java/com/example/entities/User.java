@@ -1,36 +1,30 @@
 package com.example.entities;
 
-import com.example.security.RacketAdminPrincipal;
+import com.example.security.UserPrincipal;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-@Table(name="Racket_Admin")
-@Entity
-public class RacketAdmin  {
+@Table(name="user")
+@Entity(name="user")
+public class User {
 
-    private static final Logger logger = LoggerFactory.getLogger(RacketAdminPrincipal.class);
+    private static final Logger logger = LoggerFactory.getLogger(User.class);
     @Id
     private int id;
     private String username;
     private String password;
     private String roles;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy="racketAdmin")
+    @OneToMany(fetch = FetchType.LAZY,mappedBy= "user")
     private Set<Order> orders;
 
-    public RacketAdmin() {
+    public User() {
     }
 
-    public RacketAdmin(int id, String username, String password, String roles) {
+    public User(int id, String username, String password, String roles) {
 
         this.id = id;
         this.username = username;

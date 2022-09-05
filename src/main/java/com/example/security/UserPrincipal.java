@@ -1,6 +1,6 @@
 package com.example.security;
 
-import com.example.entities.RacketAdmin;
+import com.example.entities.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
@@ -9,15 +9,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-public class RacketAdminPrincipal implements UserDetails {
-    private static final Logger logger = LoggerFactory.getLogger(RacketAdminPrincipal.class);
+public class UserPrincipal implements UserDetails {
+    private static final Logger logger = LoggerFactory.getLogger(UserPrincipal.class);
 
-    private final RacketAdmin user;
+    private final User user;
 
-    public RacketAdminPrincipal(RacketAdmin user) {
+    public UserPrincipal(User user) {
         this.user = user;
     }
 
@@ -33,13 +32,14 @@ public class RacketAdminPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        logger.info("user principal hit!");
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
         logger.info("in the principal class " + this.user.getRoles());
-        if(this.user.getRoles().equals("USER")){
-            list.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if(this.user.getRoles().equals("EMPLOYEE")){
+            list.add(new SimpleGrantedAuthority("ROLE_EMPLOYEE"));
         }
-        else if(this.user.getRoles().equals("ADMIN")){
-            list.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else if(this.user.getRoles().equals("MANAGER")){
+            list.add(new SimpleGrantedAuthority("ROLE_MANAGER"));
         }
 
         logger.info(list.get(0).getAuthority());
@@ -67,7 +67,7 @@ public class RacketAdminPrincipal implements UserDetails {
         return true;
     }
 
-    public RacketAdmin getAppUser() {
+    public User getAppUser() {
         return user;
     }
 

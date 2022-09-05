@@ -1,14 +1,12 @@
 package com.example.service;
 
 import com.example.entities.Order;
-import com.example.entities.RacketAdmin;
 import com.example.repos.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +54,7 @@ public class OrderServiceImpl implements OrderService{
             Optional<Order> order = repo.findById(id);
             order.get().setId(o.getId());
             order.get().setCustomerName(o.getCustomerName());
-            order.get().setRacketAdmin(o.getRacketAdmin());
+            order.get().setUser(o.getUser());
             order.get().setCustomerPhoneNum(o.getCustomerPhoneNum());
             order.get().setDesiredTension(o.getDesiredTension());
             order.get().setReturnDay(o.getReturnDay());
@@ -129,7 +127,7 @@ public class OrderServiceImpl implements OrderService{
 
     @Override
     public List<Order> getOrderByEmployee(int id){
-        return repo.findByRacketAdminId(id);
+        return repo.findByUserId(id);
     }
 }
 

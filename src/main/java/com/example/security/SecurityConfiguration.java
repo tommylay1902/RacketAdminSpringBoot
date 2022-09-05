@@ -1,6 +1,5 @@
 package com.example.security;
 
-import com.example.controller.OrderController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +20,7 @@ public class SecurityConfiguration {
     //This bean will override the default security filter
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        logger.info("filter chain hit");
+        logger.info("default hit");
         http
                 //allow for testing api endpoints in postman
                 .csrf(c -> c.disable())
@@ -30,11 +29,12 @@ public class SecurityConfiguration {
                     auth.antMatchers("/*").authenticated();
                     //from test controller, will permit any logged in user to access
                     auth.antMatchers("/hello").permitAll();
-                    auth.antMatchers("/dashboard").hasRole("USER");
+                    auth.antMatchers("/dashboard").hasRole("EMPLOYEE");
+                    auth.antMatchers("/api/order/show/*").hasRole("MANAGER");
                     //admin or user should have access to all orders
-                    auth.antMatchers("/api/order/*").hasAnyRole("USER", "ADMIN");
+                    auth.antMatchers("/api/order/*").hasAnyRole("EMPLOYEE", "MANAGER");
                     //admin only has access to racketadmins CRUD operations
-                    auth.antMatchers("/api/racketadmin/*").hasRole("ADMIN");
+                    auth.antMatchers("/api/racketadmin/*").hasRole("MANAGER");
                 })
                 //
                 .formLogin()

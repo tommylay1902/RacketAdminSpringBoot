@@ -26,19 +26,19 @@ public class Order {
     Date returnDay;
 
     @ManyToOne
-    @JoinColumn( name = "racket_admin")
+    @JoinColumn( name = "user")
     @JsonIgnore
-    private RacketAdmin racketAdmin;
+    private User user;
 
-    public RacketAdmin getRacketAdmin() {
-        return racketAdmin;
+    public User getUser() {
+        return user;
     }
 
-    public void setRacketAdmin(RacketAdmin racketAdmin) {
-        this.racketAdmin = racketAdmin;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Order(int id, int price, String racketBrand, String stringPattern, String recTension, String stringType, String desiredTension, String customerName, String customerPhoneNum, Date receivedDay, Date returnDay, RacketAdmin racketAdmin) {
+    public Order(int id, int price, String racketBrand, String stringPattern, String recTension, String stringType, String desiredTension, String customerName, String customerPhoneNum, Date receivedDay, Date returnDay, User user) {
         this.id = id;
         this.price = price;
         this.racketBrand = racketBrand;
@@ -50,7 +50,7 @@ public class Order {
         this.customerPhoneNum = customerPhoneNum;
         this.receivedDay = receivedDay;
         this.returnDay = returnDay;
-        this.racketAdmin = racketAdmin;
+        this.user = user;
     }
 
     public Order() {
@@ -145,6 +145,7 @@ public class Order {
         this.stringPattern = stringPatern;
     }
 
+
     @Override
     public String toString() {
         return "Order{" +
@@ -159,7 +160,7 @@ public class Order {
                 ", customerPhoneNum='" + customerPhoneNum + '\'' +
                 ", receivedDay=" + receivedDay +
                 ", returnDay=" + returnDay +
-                ", adminID=" + racketAdmin +
+                ", adminID=" + user +
                 '}';
     }
 }

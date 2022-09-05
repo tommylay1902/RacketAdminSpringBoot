@@ -1,15 +1,14 @@
 package com.example.controller;
 
 import com.example.entities.Order;
-import com.example.entities.RacketAdmin;
-import com.example.service.RacketAdminService;
+import com.example.entities.User;
+import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
@@ -19,19 +18,19 @@ import java.util.Optional;
 public class RacketAdminController {
 
     @Autowired
-    RacketAdminService service;
+    UserService service;
 
 
     @GetMapping("/show")
     @ResponseBody
-    public List<RacketAdmin> getRacketAdmin()
+    public List<User> getRacketAdmin()
     {
         return service.getAll();
     }
 
     @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<String> insert(@RequestBody RacketAdmin rd)
+    public ResponseEntity<String> insert(@RequestBody User rd)
     {
         //Check if there is information pass in from the post request
         //if yes, call insert service to do the insertion
@@ -48,7 +47,7 @@ public class RacketAdminController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResponseEntity<String> update(@RequestBody RacketAdmin rd, @PathVariable int id)
+    public ResponseEntity<String> update(@RequestBody User rd, @PathVariable int id)
     {
         //Check if there is information pass in from the post request
         //if yes, call update service to update the information
@@ -63,9 +62,9 @@ public class RacketAdminController {
 
     @GetMapping("/getById/{id}")
     @ResponseBody
-    public Optional<RacketAdmin> getById(@PathVariable int id)
+    public Optional<User> getById(@PathVariable int id)
     {
-        return service.getRacketAdminById(id);
+        return service.getUserById(id);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -82,12 +81,6 @@ public class RacketAdminController {
         return service.deleteAll();
     }
 
-    @GetMapping("/showRA")
-    @ResponseBody
-    public List<RacketAdmin> popRAadmin()    {
-
-        return service.popRAadmin();
-    }
 
     @GetMapping("/showByDay/{start}")
     @ResponseBody
