@@ -25,7 +25,11 @@ public interface RacketAdminRepository extends JpaRepository<RacketAdmin, Intege
             "WHERE received_day = ?1 OR return_day <= ?2", nativeQuery = true)
     Optional<Order> ordersByWeek(Date start, Date end);
 
-   // Optional<Order> OrdersByMonth(Month month);
+
+    @Query(value = "SELECT *" +
+            "FROM orders" +
+            "WHERE MONTH(received_day = ?1", nativeQuery = true)
+    Optional<Order> OrdersByMonth(Month month);
 
 
 }

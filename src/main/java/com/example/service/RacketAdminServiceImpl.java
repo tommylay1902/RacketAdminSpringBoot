@@ -111,7 +111,7 @@ public class RacketAdminServiceImpl implements RacketAdminService {
         //if now, delete all the entries in the table
         try{
             List<RacketAdmin>rd = repo.findAll();
-            if(rd!= null) {
+            if(!rd.isEmpty()) {
                 repo.deleteAll();
                 return new ResponseEntity<>(HttpStatus.ACCEPTED);
             }
