@@ -21,7 +21,7 @@ public class Order {
     String desiredTension;
     String customerName;
     String customerPhoneNum;
-
+    boolean completed;
     Date receivedDay;
     Date returnDay;
 
@@ -38,9 +38,12 @@ public class Order {
         this.user = user;
     }
 
-    public Order(int id, int price, String racketBrand, String stringPattern, String recTension, String stringType, String desiredTension, String customerName, String customerPhoneNum, Date receivedDay, Date returnDay, User user) {
+
+
+    public Order(int id, int price, String description, String racketBrand, String stringPattern, String recTension, String stringType, String desiredTension, String customerName, String customerPhoneNum, boolean completed, Date receivedDay, Date returnDay, User user) {
         this.id = id;
         this.price = price;
+        this.description = description;
         this.racketBrand = racketBrand;
         this.stringPattern = stringPattern;
         this.recTension = recTension;
@@ -48,6 +51,7 @@ public class Order {
         this.desiredTension = desiredTension;
         this.customerName = customerName;
         this.customerPhoneNum = customerPhoneNum;
+        this.completed = completed;
         this.receivedDay = receivedDay;
         this.returnDay = returnDay;
         this.user = user;
@@ -145,12 +149,28 @@ public class Order {
         this.stringPattern = stringPatern;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
                 ", price=" + price +
+                ", description='" + description + '\'' +
                 ", racketBrand='" + racketBrand + '\'' +
                 ", stringPattern='" + stringPattern + '\'' +
                 ", recTension='" + recTension + '\'' +
@@ -158,9 +178,10 @@ public class Order {
                 ", desiredTension='" + desiredTension + '\'' +
                 ", customerName='" + customerName + '\'' +
                 ", customerPhoneNum='" + customerPhoneNum + '\'' +
+                ", completed=" + completed +
                 ", receivedDay=" + receivedDay +
                 ", returnDay=" + returnDay +
-                ", adminID=" + user +
+                ", user=" + user +
                 '}';
     }
 }

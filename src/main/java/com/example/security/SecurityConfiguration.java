@@ -27,12 +27,10 @@ public class SecurityConfiguration {
                 .authorizeRequests((auth) -> {
                     //any path you try to access will need to make sure you are logged in first
                     auth.antMatchers("/*").authenticated();
-                    //from test controller, will permit any logged in user to access
-                    auth.antMatchers("/hello").permitAll();
-                    auth.antMatchers("/dashboard").hasRole("EMPLOYEE");
-                    auth.antMatchers("/api/order/show/*").hasRole("MANAGER");
+
+                    auth.antMatchers("/api/employee/order/*").hasRole("EMPLOYEE");
                     //admin or user should have access to all orders
-                    auth.antMatchers("/api/order/*").hasAnyRole("EMPLOYEE", "MANAGER");
+                    auth.antMatchers("/api/manager/order/*").hasAnyRole( "MANAGER");
                     //admin only has access to racketadmins CRUD operations
                     auth.antMatchers("/api/racketadmin/*").hasRole("MANAGER");
                 })

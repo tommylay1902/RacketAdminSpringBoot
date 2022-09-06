@@ -16,9 +16,9 @@ public interface UserService {
     ResponseEntity<String> delete(int id);
     Optional<User> getUserById(int id);
     ResponseEntity<String> deleteAll();
-    Optional<Order> orderByDay(Date start);
-    Optional<Order> orderByWeek(Date start, Date end);
-    Optional<Order> orderByMonth(Month month);
+//    Optional<Order> orderByDay(Date start);
+//    Optional<Order> orderByWeek(Date start, Date end);
+//    Optional<Order> orderByMonth(Month month);
 
 
 

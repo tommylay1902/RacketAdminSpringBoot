@@ -126,20 +126,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
 
-    @Override
-    public Optional<Order> orderByDay(Date start) {
-        return repo.ordersByDay(start);
-    }
 
-    @Override
-    public Optional<Order> orderByWeek(Date start, Date end) {
-        return Optional.empty();
-    }
+//    @Override
+//    public Optional<Order> orderByDay(Date start) {
+//        return repo.ordersByDay(start);
+//    }
 
-    @Override
-    public Optional<Order> orderByMonth(Month month) {
-        return Optional.empty();
-    }
+//    @Override
+//    public Optional<Order> orderByWeek(Date start, Date end) {
+//        return Optional.empty();
+//    }
+//
+//    @Override
+//    public Optional<Order> orderByMonth(Month month) {
+//        return Optional.empty();
+//    }
 
 
     @Override

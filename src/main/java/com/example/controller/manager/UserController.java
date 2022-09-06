@@ -1,6 +1,5 @@
-package com.example.controller;
+package com.example.controller.manager;
 
-import com.example.entities.Order;
 import com.example.entities.User;
 import com.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +7,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
-import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/racketadmin")
-public class RacketAdminController {
+public class UserController {
 
     @Autowired
     UserService service;
-
 
     @GetMapping("/show")
     @ResponseBody
@@ -81,20 +77,6 @@ public class RacketAdminController {
         return service.deleteAll();
     }
 
-
-    @GetMapping("/showByDay/{start}")
-    @ResponseBody
-    public Optional<Order> orderByDay(@PathVariable Date start)
-    {
-        try{
-            if(start.toLocalDate().isSupported(ChronoField.DAY_OF_MONTH))
-                return service.orderByDay(start);
-
-        }catch(Exception e){
-            System.out.println(e);
-        }
-        return Optional.empty();
-    }
 
 }
 
